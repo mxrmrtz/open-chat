@@ -16,8 +16,6 @@ function App() {
 		getData();
 		
 	}, []);
-	console.log(messagesData)
-
 	return (
 		<div className="App-header">
 			<h1>wdawad</h1>
