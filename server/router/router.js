@@ -4,12 +4,13 @@ const MessageTable = require("../model.js")
 
 console.log(MessageTable)
 
-router.get('/messages', (req, res) => {
-  const data = {
-    message: 'Hello from Express!'
-  };
-  console.log(data)
-  res.json(data);
+router.get('/messages', async (req, res) => {
+  // const data = {
+  //   username:"happyTime",
+  //   message: 'Hello from Express!'
+  // };
+  const list = await MessageTable.findAll();
+	res.json(list);
 });
 
 module.exports = router;

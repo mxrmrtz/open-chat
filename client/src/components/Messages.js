@@ -1,7 +1,13 @@
-const Messages = ({messages}) => {
+const Messages = ({messagesData}) => {
 	return (
 		<>
-		<p>{messages.message}</p>
+		{messagesData.map((item) => {
+			return(<div key={item.id}>
+				<h3>{item.username}</h3>
+				<p>{item.message}</p>
+			</div>)
+			
+		})}
 		</>
 	)
 }
