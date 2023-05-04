@@ -1,0 +1,14 @@
+.container {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.more_icon{
+	padding-bottom: .8rem;
+}
+
+.more_actions {
+	position: absolute;
+	left: 64%; /* Position the element below the parent container */
+  }
