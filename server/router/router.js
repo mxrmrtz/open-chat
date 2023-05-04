@@ -35,4 +35,15 @@ router.post("/message", async (req, res) => {
 	res.send(newMessage);
 });
 
+router.delete("/messages/:id", async (req, res) => {
+	const { id } = req.params;
+	console.log("sadsadasd", id);
+	const deleteTask = await MessageTable.destroy({
+		where: {
+			id: id,
+		},
+	});
+	res.end();
+});
+
 module.exports = router;
