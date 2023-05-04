@@ -4,7 +4,7 @@ import editIcon from "../../icons/edit.svg";
 import deleteIcon from "../../icons/delete.svg";
 import styles from "./MoreButton.module.css";
 
-const MoreButton = ({ className, id, handleDelete }) => {
+const MoreButton = ({ id, handleDelete }) => {
 	const [isShowing, setIsShowing] = useState(false);
 	const [loading, setLoading] = useState(false);
 
@@ -13,7 +13,7 @@ const MoreButton = ({ className, id, handleDelete }) => {
 	return (
 		<>
 			<div
-				className={`${className} ${styles.container}`}
+				className={styles.container}
 				onMouseEnter={() => {
 					setIsShowing(true);
 				}}

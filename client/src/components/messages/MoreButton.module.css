@@ -9,6 +9,5 @@
 }
 
 .more_actions {
-	position: absolute;
-	left: 64%; /* Position the element below the parent container */
+	margin: .3rem;
   }

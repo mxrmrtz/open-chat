@@ -11,10 +11,15 @@ const Messages = ({ messagesData, handleDelete }) => {
 							<div className={styles.username}>
 								<h3>{item.username}</h3>
 							</div>
-							<div className={styles.message}>
-								<p className={styles.message_text}>{item.message}</p>
+							<div className={styles.message_container}>
+								<div className={styles.message}>
+									<p className={styles.message_text}>{item.message}</p>
+								</div>
+								<MoreButton
+									id={item.id}
+									handleDelete={handleDelete}
+								/>
 							</div>
-							<MoreButton id={item.id} handleDelete={handleDelete} className={styles.more} />
 						</li>
 					);
 				})}
