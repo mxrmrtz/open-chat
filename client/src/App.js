@@ -18,7 +18,6 @@ function App() {
 		<div className="App-header">
 			<h1>Wacky Chaty</h1>
 			<ChatBox messagesData={messagesData} />
-			<ChatInput />
 		</div>
 	);
 }
