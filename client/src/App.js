@@ -1,25 +1,23 @@
 import "./App.css";
 import { useEffect, useState } from "react";
-import Messages  from "./components/Messages"
+import ChatBox from "./components/ChatBox";
 
 function App() {
-	const [messagesData, setMessagesData] = useState([])
+	const [messagesData, setMessagesData] = useState([]);
 
-	
-	useEffect( () => {
+	useEffect(() => {
 		const getData = async () => {
-			const res = await fetch("/messages"); // replace with your Express server's URL
+			const res = await fetch("/messages");
 			const data = await res.json();
 			setMessagesData(data);
-		  };
+		};
 
 		getData();
-		
 	}, []);
 	return (
 		<div className="App-header">
-			<h1>wdawad</h1>
-			<Messages messagesData={messagesData}/>
+			<h1>Wacky Chaty</h1>
+			<ChatBox messagesData={messagesData}/>
 		</div>
 	);
 }

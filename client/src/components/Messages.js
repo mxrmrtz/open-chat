@@ -3,7 +3,6 @@ import styles from "./messages.module.css";
 const Messages = ({ messagesData }) => {
 	return (
 		<>
-			<div className={styles.container}>
 				<ul>
 					{messagesData.map((item) => {
 						return (
@@ -18,7 +17,6 @@ const Messages = ({ messagesData }) => {
 						);
 					})}
 				</ul>
-			</div>
 		</>
 	);
 };
