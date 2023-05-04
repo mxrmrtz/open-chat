@@ -1,13 +1,11 @@
-*{font-family: 'SF Pro Display';
+* {
+	font-family: "SF Pro Display", Sans Serif;
 	font-style: normal;
 	font-weight: 400;
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
 }
-
-
-
 
 @media (prefers-reduced-motion: no-preference) {
 	.App-logo {
