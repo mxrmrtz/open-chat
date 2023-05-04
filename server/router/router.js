@@ -26,4 +26,13 @@ router.put("/message", async (req, res) => {
 	res.send(updatedMessage);
 });
 
+router.post("/message", async (req, res) => {
+	const { username, message } = req.body;
+	const newMessage = await MessageTable.create({
+		username,
+		message,
+	});
+	res.send(newMessage);
+});
+
 module.exports = router;

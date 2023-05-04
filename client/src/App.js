@@ -11,13 +11,12 @@ function App() {
 			const data = await res.json();
 			setMessagesData(data);
 		};
-
 		getData();
 	}, []);
 	return (
 		<div className="App-header">
 			<h1>Wacky Chaty</h1>
-			<ChatBox messagesData={messagesData}/>
+			<ChatBox messagesData={messagesData} />
 		</div>
 	);
 }
