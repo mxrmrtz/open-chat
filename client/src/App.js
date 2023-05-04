@@ -1,6 +1,7 @@
 import "./App.css";
 import { useEffect, useState } from "react";
 import ChatBox from "./components/ChatBox";
+import ChatInput from "./components/ChatInput";
 
 function App() {
 	const [messagesData, setMessagesData] = useState([]);
@@ -17,6 +18,7 @@ function App() {
 		<div className="App-header">
 			<h1>Wacky Chaty</h1>
 			<ChatBox messagesData={messagesData} />
+			<ChatInput />
 		</div>
 	);
 }
