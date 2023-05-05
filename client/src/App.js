@@ -5,18 +5,37 @@ import ChatBox from "./components/ChatBox";
 function App() {
 	const [messagesData, setMessagesData] = useState([]);
 
+	const getData = async () => {
+		const res = await fetch("/messages");
+		const data = await res.json();
+		setMessagesData(data);
+	};
+
+	const handleNewMessage = async (newMessage) => {
+		try {
+			await fetch("/message", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(newMessage),
+			});
+		} catch (err) {
+			alert("something went wrong in the post request", err);
+		}
+		getData();
+	};
+
 	useEffect(() => {
-		const getData = async () => {
-			const res = await fetch("/messages");
-			const data = await res.json();
-			setMessagesData(data);
-		};
 		getData();
 	}, []);
 	return (
 		<div className="App-header">
 			<h1>Wacky Chaty</h1>
-			<ChatBox messagesData={messagesData} />
+			<ChatBox
+				messagesData={messagesData}
+				handleNewMessage={handleNewMessage}
+			/>
 		</div>
 	);
 }
