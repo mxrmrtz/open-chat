@@ -1,17 +1,24 @@
 import React from "react";
+import { useState } from "react";
 import styles from "./ChatInput.module.css";
 
-const ChatInput = () => {
-	const handleSubmit = () => {
-		return;
+const ChatInput = ({ handleNewMessage }) => {
+	const [newMessage, setNewMessage] = useState({ message: "" });
+
+	const handleChange = (e) => {
+		e.preventDefault();
+		setNewMessage((prev) => ({ ...prev, message: e.target.value }));
 	};
-	const handleChange = () => {
-		return;
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		handleNewMessage(newMessage);
+		e.target.reset();
 	};
 
 	return (
 		<>
-			<form action="post" onSubmit={handleSubmit}>
+			<form method="post" onSubmit={handleSubmit}>
 				<input
 					className={styles.inputField}
 					type="text"
@@ -19,6 +26,7 @@ const ChatInput = () => {
 					placeholder="say something nice"
 					onChange={handleChange}
 				/>
+				<button type="submit">Send!</button>
 			</form>
 		</>
 	);

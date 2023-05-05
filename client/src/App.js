@@ -1,7 +1,6 @@
 import "./App.css";
 import { useEffect, useState } from "react";
 import ChatBox from "./components/ChatBox";
-import ChatInput from "./components/ChatInput";
 
 function App() {
 	const [messagesData, setMessagesData] = useState([]);
