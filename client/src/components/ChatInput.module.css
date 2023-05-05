@@ -1,4 +1,9 @@
-form .inputField {
+.inputForm {
+	display: flex;
+	align-items: center;
+}
+
+.inputForm .inputField {
 	background: rgba(255, 255, 255, 0.01);
 	border-radius: 16px;
 	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -14,7 +19,28 @@ form .inputField {
 	color: white;
 }
 
-form .inputField:focus {
+.inputForm .inputField:focus {
 	outline: none;
 	border: 1px solid rgb(160, 160, 160);
+}
+
+.inputForm .submitButton {
+	display: inline-block;
+	border: none;
+	cursor: pointer;
+	background: none;
+}
+
+.inputForm .submitButton:hover,
+.inputForm .submitButton:focus {
+	outline: none;
+}
+
+.inputForm .submitButton:focus {
+	outline: none;
+}
+
+.buttonImage {
+	align-self: center;
+	justify-self: center;
 }
