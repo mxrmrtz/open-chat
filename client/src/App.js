@@ -27,13 +27,32 @@ function App() {
 		}
 	};
 
+	const handleNewMessage = async (newMessage) => {
+		try {
+			await fetch("/message", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(newMessage),
+			});
+		} catch (err) {
+			alert("something went wrong in the post request", err);
+		}
+		getData();
+	};
+
 	useEffect(() => {
 		getData();
 	}, []);
 	return (
 		<div className="App-header">
 			<h1>Wacky Chaty</h1>
-			<ChatBox handleDelete={handleDelete} messagesData={messagesData} />
+			<ChatBox
+				handleDelete={handleDelete}
+				messagesData={messagesData}
+				handleNewMessage={handleNewMessage}
+			/>
 		</div>
 	);
 }

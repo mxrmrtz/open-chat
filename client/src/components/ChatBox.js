@@ -1,16 +1,20 @@
-import styles from "./chatbox.module.css"
-import Messages from "./messages/Messages";
+import styles from "./chatbox.module.css";
+import ChatInput from "./ChatInput";
+import Messages from "./Messages";
 import Profiles from "./Profiles";
 
-const ChatBox = ({messagesData, handleDelete}) => {
+const ChatBox = ({ messagesData, handleNewMessage }) => {
 	return (
 		<>
 			<div className={styles.container}>
-				<Profiles messagesData={messagesData} className={styles.testing}/>
-				<Messages handleDelete={handleDelete} messagesData={messagesData}/>
+				<Profiles messagesData={messagesData} className={styles.testing} />
+				<div>
+					<Messages messagesData={messagesData} />
+					<ChatInput handleNewMessage={handleNewMessage} />
+				</div>
 			</div>
 		</>
 	);
 };
 
-export default ChatBox
+export default ChatBox;
