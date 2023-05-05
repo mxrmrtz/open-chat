@@ -1,7 +1,7 @@
 import styles from "./messages.module.css";
 import MoreButton from "./MoreButton";
 
-const Messages = ({ messagesData, handleDelete }) => {
+const Messages = ({ messagesData, handleDelete, handleEdit }) => {
 	return (
 		<>
 			<ul>
@@ -18,6 +18,7 @@ const Messages = ({ messagesData, handleDelete }) => {
 								<MoreButton
 									id={item.id}
 									handleDelete={handleDelete}
+									handleEdit={handleEdit}
 								/>
 							</div>
 						</li>
