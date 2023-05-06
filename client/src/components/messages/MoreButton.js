@@ -66,7 +66,9 @@ const MoreButton = ({ id, handleDelete, handleEdit }) => {
 						onChange={handleEditChange}
 					/>
 					<button type="submit">submit</button>
-					<button onClick={() => setShowEdit(false)}>exit</button>
+					<button type="button" onClick={() => setShowEdit(false)}>
+						exit
+					</button>
 				</form>
 			)}
 		</>
