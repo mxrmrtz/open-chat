@@ -44,10 +44,11 @@ const UserTable = sequelize.define(
 		username: {
 			type: DataTypes.TEXT,
 			defaultValue: "undefined",
+			allowNull: false,
 		},
 		password: {
 			type: Sequelize.STRING,
-			allowNull: true,
+			allowNull: false,
 		},
 	},
 	{
@@ -59,7 +60,8 @@ const UserTable = sequelize.define(
 				}
 			},
 		},
-	});
+	}
+);
 
 UserTable.prototype.validPassword = async function (password) {
 	return await bcrypt.compareSync(password, this.password);
@@ -70,7 +72,6 @@ UserTable.classMethods = {
 		return await bcrypt.compareSync(password, hash);
 	},
 };
-
 
 sequelize
 	.sync()
