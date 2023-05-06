@@ -5,31 +5,10 @@ import ChatBox from "./components/ChatBox";
 function App() {
 	const [messagesData, setMessagesData] = useState([]);
 
-	const getData = async () => {
-		try {
-			const res = await fetch("/messages");
-			const data = await res.json();
-			setMessagesData(data);
-		} catch (error) {
-			console.error(error);
-		}
-	};
-
-	const handleDelete = async (id) => {
-		try {
-			const res = await fetch(`/messages/${id}`, {
-				method: "DELETE",
-				headers: { "Content-Type": "application/json" },
-			});
-			getData();
-		} catch (error) {
-			alert("heck");
-		}
-	};
-
+	// CREATE
 	const handleNewMessage = async (newMessage) => {
 		try {
-			await fetch("/message", {
+			await fetch("/messages", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
@@ -42,6 +21,46 @@ function App() {
 		getData();
 	};
 
+	// READ
+	const getData = async () => {
+		try {
+			const res = await fetch("/messages");
+			const data = await res.json();
+			setMessagesData(data);
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
+	// UPDATE
+	const handleEdit = async (id, message) => {
+		try {
+			await fetch(`/messages/${id}`, {
+				method: "PUT",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(message),
+			});
+			getData();
+		} catch (err) {
+			alert("something went wrong in your put request", err);
+		}
+	};
+
+	// DELETE
+	const handleDelete = async (id) => {
+		try {
+			const res = await fetch(`/messages/${id}`, {
+				method: "DELETE",
+				headers: { "Content-Type": "application/json" },
+			});
+			getData();
+		} catch (error) {
+			alert("heck");
+		}
+	};
+
 	useEffect(() => {
 		getData();
 	}, []);
@@ -52,6 +71,7 @@ function App() {
 				handleDelete={handleDelete}
 				messagesData={messagesData}
 				handleNewMessage={handleNewMessage}
+				handleEdit={handleEdit}
 			/>
 		</div>
 	);
