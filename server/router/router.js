@@ -5,7 +5,7 @@ const MessageTable = require("../model.js");
 console.log(MessageTable);
 
 // CREATE
-router.post("/message", async (req, res) => {
+router.post("/messages", async (req, res) => {
 	const { username, message } = req.body;
 	const newMessage = await MessageTable.create({
 		username,
@@ -21,7 +21,7 @@ router.get("/messages", async (req, res) => {
 });
 
 // UPDATE
-router.put("/message/:id", async (req, res) => {
+router.put("/messages/:id", async (req, res) => {
 	const { id } = req.params;
 	const { message } = req.body;
 	const updatedMessage = await MessageTable.update(
