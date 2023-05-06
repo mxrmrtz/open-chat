@@ -1,8 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const MessageTable = require("../model.js");
+const {MessageTable, UserTable} = require("../model.js");
 
-console.log(MessageTable);
 
 // CREATE
 router.post("/messages", async (req, res) => {

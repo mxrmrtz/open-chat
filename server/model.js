@@ -1,4 +1,5 @@
 const { Sequelize, DataTypes } = require("sequelize");
+const bcrypt = require("bcrypt");
 const { dotenv } = require("dotenv");
 require("dotenv").config();
 
@@ -27,14 +28,49 @@ const MessageTable = sequelize.define("messages", {
 		type: DataTypes.INTEGER,
 		autoIncrement: true,
 	},
-	username: {
-		type: DataTypes.TEXT,
-		defaultValue: "username",
-	},
 	message: {
 		type: DataTypes.TEXT,
 	},
 });
+
+const UserTable = sequelize.define(
+	"users",
+	{
+		id: {
+			primaryKey: true,
+			type: DataTypes.INTEGER,
+			autoIncrement: true,
+		},
+		username: {
+			type: DataTypes.TEXT,
+			defaultValue: "undefined",
+		},
+		password: {
+			type: Sequelize.STRING,
+			allowNull: true,
+		},
+	},
+	{
+		hooks: {
+			beforeCreate: async (user) => {
+				if (user.password) {
+					const salt = await bcrypt.genSaltSync(10, "a");
+					user.password = bcrypt.hashSync(user.password, salt);
+				}
+			},
+		},
+	});
+
+UserTable.prototype.validPassword = async function (password) {
+	return await bcrypt.compareSync(password, this.password);
+};
+
+UserTable.classMethods = {
+	validPassword: async function (password, hash) {
+		return await bcrypt.compareSync(password, hash);
+	},
+};
+
 
 sequelize
 	.sync()
@@ -45,4 +81,4 @@ sequelize
 		console.error("Error syncing model with database:", error);
 	});
 
-module.exports = MessageTable;
+module.exports = { MessageTable, UserTable };
