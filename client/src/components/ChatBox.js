@@ -3,13 +3,13 @@ import ChatInput from "./ChatInput";
 import Messages from "./messages/Messages.js";
 import Profiles from "./Profiles";
 
-const ChatBox = ({ messagesData, handleNewMessage }) => {
+const ChatBox = ({ messagesData, handleNewMessage, handleDelete }) => {
 	return (
 		<>
 			<div className={styles.container}>
 				<Profiles messagesData={messagesData} className={styles.profiles_container} />
 				<div className={styles.chatbox_container}>
-					<Messages messagesData={messagesData} />
+					<Messages handleDelete={handleDelete} messagesData={messagesData} />
 					<ChatInput handleNewMessage={handleNewMessage} />
 				</div>
 			</div>
