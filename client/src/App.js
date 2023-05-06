@@ -8,7 +8,7 @@ function App() {
 	// CREATE
 	const handleNewMessage = async (newMessage) => {
 		try {
-			await fetch("/message", {
+			await fetch("/messages", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
@@ -35,7 +35,7 @@ function App() {
 	// UPDATE
 	const handleEdit = async (id, message) => {
 		try {
-			await fetch(`/message/${id}`, {
+			await fetch(`/messages/${id}`, {
 				method: "PUT",
 				headers: {
 					"Content-Type": "application/json",
