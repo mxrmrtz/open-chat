@@ -12,8 +12,11 @@ const ChatBox = ({
 	return (
 		<>
 			<div className={styles.container}>
-				<Profiles messagesData={messagesData} className={styles.testing} />
-				<div>
+				<Profiles
+					messagesData={messagesData}
+					className={styles.profiles_container}
+				/>
+				<div className={styles.chatbox_container}>
 					<Messages
 						handleDelete={handleDelete}
 						messagesData={messagesData}
