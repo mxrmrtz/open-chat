@@ -5,6 +5,17 @@ import { useState } from "react";
 const LoginPage = () => {
 	const [showRegister, setShowRegister] = useState(false);
 
+	const createUser = async () => {
+		const user = { username: "assKeyboard", password: "macIsBetter" };
+		await fetch("/users", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(user),
+		});
+	};
+
 	return (
 		<>
 			{showRegister ? (
@@ -20,6 +31,7 @@ const LoginPage = () => {
 					>
 						Register
 					</button>
+					<button onClick={createUser}>test</button>
 				</>
 			)}
 		</>

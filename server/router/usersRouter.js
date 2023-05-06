@@ -9,11 +9,10 @@ usersRouter.post("/users", async (req, res) => {
 	res.send(newUser);
 });
 
+// READ
 usersRouter.get("/users", async (req, res) => {
-	const username = "whatecer";
-	const password = "1234";
-	const newUser = await UserTable.create({ username, password });
-	res.send(newUser);
+	const allUsers = userTable.findAll();
+	res.send(allUsers);
 });
 
 module.exports = usersRouter;
