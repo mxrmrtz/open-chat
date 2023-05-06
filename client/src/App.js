@@ -1,6 +1,7 @@
 import "./App.css";
 import { useEffect, useState } from "react";
 import ChatBox from "./components/ChatBox";
+import LoginPage from "./components/login/LoginPage";
 
 function App() {
 	const [messagesData, setMessagesData] = useState([]);
@@ -67,6 +68,7 @@ function App() {
 	return (
 		<div className="App-header">
 			<h1>Wacky Chaty</h1>
+			<LoginPage />
 			<ChatBox
 				handleDelete={handleDelete}
 				messagesData={messagesData}
