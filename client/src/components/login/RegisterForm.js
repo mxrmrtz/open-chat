@@ -28,13 +28,6 @@ const RegisterForm = ({ setShowRegister, createUser, user }) => {
 				<button type="submit">Register</button>
 			</form>
 			<button
-				onClick={() => {
-					createUser({ username: "cringe", password: "kewl" });
-				}}
-			>
-				Create a cringe account (hardcoded)
-			</button>
-			<button
 				type="button"
 				onClick={() => {
 					setShowRegister(false);
