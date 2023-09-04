@@ -1,10 +1,10 @@
-const RegisterForm = ({ setShowRegister, setUser, user }) => {
+const RegisterForm = ({ setShowRegister, createUser, user }) => {
 	const handleAccount = (e) => {
-		const Inputuser = {
+		const inputUser = {
 			username: e.target[0].value,
 			password: e.target[1].value,
 		};
-		setUser((prev) => ({ ...prev, ...Inputuser }));
+		createUser((prev) => ({ ...prev, ...inputUser }));
 		e.preventDefault();
 	};
 
@@ -23,7 +23,7 @@ const RegisterForm = ({ setShowRegister, setUser, user }) => {
 			</form>
 			<button
 				onClick={() => {
-					setUser({ username: "cringe", password: "kewl" });
+					createUser({ username: "cringe", password: "kewl" });
 				}}
 			>
 				Create a cringe account
