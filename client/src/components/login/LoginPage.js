@@ -4,9 +4,13 @@ import { useState } from "react";
 
 const LoginPage = () => {
 	const [showRegister, setShowRegister] = useState(false);
+	const [user, setUser] = useState({})
+
+	console.log(user)
+
+
 
 	const createUser = async () => {
-		const user = { username: "assKeyboard", password: "macIsBetter" };
 		await fetch("/users", {
 			method: "POST",
 			headers: {
@@ -19,7 +23,7 @@ const LoginPage = () => {
 	return (
 		<>
 			{showRegister ? (
-				<RegisterForm setShowRegister={setShowRegister} />
+				<RegisterForm user={user} setUser={setUser} setShowRegister={setShowRegister} />
 			) : (
 				<>
 					<p>Log in</p>
