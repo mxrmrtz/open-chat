@@ -1,10 +1,16 @@
+import { useState } from "react";
+
 const RegisterForm = ({ setShowRegister, createUser, user }) => {
+	const [newUser, setNewUser] = useState(null);
+
 	const handleAccount = (e) => {
 		const inputUser = {
 			username: e.target[0].value,
 			password: e.target[1].value,
 		};
-		createUser((prev) => ({ ...prev, ...inputUser }));
+		console.log(inputUser);
+		createUser(inputUser);
+
 		e.preventDefault();
 	};
 
@@ -26,7 +32,7 @@ const RegisterForm = ({ setShowRegister, createUser, user }) => {
 					createUser({ username: "cringe", password: "kewl" });
 				}}
 			>
-				Create a cringe account
+				Create a cringe account (hardcoded)
 			</button>
 			<button
 				type="button"
