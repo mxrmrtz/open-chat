@@ -22,6 +22,7 @@ const LoginPage = () => {
 				<RegisterForm setShowRegister={setShowRegister} />
 			) : (
 				<>
+					<p>Log in</p>
 					<LoginForm />
 					<p>Don't have an account?</p>
 					<button
