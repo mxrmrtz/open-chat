@@ -14,6 +14,7 @@ app.use(cors());
 
 app.use("/", router);
 app.use("/", usersRouter);
+app.use("/", require("./router/authRouter"));
 
 app.listen(port, () => {
 	console.log(`listening to port ${port}`);
