@@ -1,11 +1,17 @@
 import styles from "./messages.module.css";
 import MoreButton from "./MoreButton";
 
-const Messages = ({ messagesData, handleDelete, handleEdit }) => {
+const Messages = ({ messagesData, handleDelete, handleEdit, currentUser }) => {
 	return (
 		<>
 			<ul>
 				{messagesData.map((item) => {
+					let allowedToEdit;
+					if (currentUser === item.username) {
+						allowedToEdit = true;
+					} else {
+						allowedToEdit = false;
+					}
 					return (
 						<li key={item.id}>
 							<div className={styles.username}>
@@ -15,11 +21,15 @@ const Messages = ({ messagesData, handleDelete, handleEdit }) => {
 								<div className={styles.message}>
 									<p className={styles.message_text}>{item.message}</p>
 								</div>
-								<MoreButton
-									id={item.id}
-									handleDelete={handleDelete}
-									handleEdit={handleEdit}
-								/>
+								{allowedToEdit ? (
+									<MoreButton
+										id={item.id}
+										handleDelete={handleDelete}
+										handleEdit={handleEdit}
+									/>
+								) : (
+									<></>
+								)}
 							</div>
 						</li>
 					);
