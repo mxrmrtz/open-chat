@@ -1,8 +1,9 @@
 import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
 import { useState } from "react";
+import styles from "./loginPage.module.css";
 
-const LoginPage = ({ getData, setLoggedIn }) => {
+const LoginPage = ({ getData, setCurrentUser }) => {
 	const [showRegister, setShowRegister] = useState(false);
 
 	// CREATE
@@ -18,18 +19,20 @@ const LoginPage = ({ getData, setLoggedIn }) => {
 
 	// LOG IN
 	const logIn = async (user) => {
-		await fetch("/auth", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			credentials: "include",
-			body: JSON.stringify(user),
-		});
-		getData();
-		setLoggedIn(true);
-
-		console.log("i am loggign in");
+		try {
+			await fetch("/auth", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				credentials: "include",
+				body: JSON.stringify(user),
+			});
+			getData();
+			setCurrentUser(user.username);
+		} catch (err) {
+			console.log("could not log in");
+		}
 	};
 
 	return (
@@ -41,17 +44,19 @@ const LoginPage = ({ getData, setLoggedIn }) => {
 				/>
 			) : (
 				<>
-					<p>Log in</p>
-					<LoginForm logIn={logIn} />
-					<p>Don't have an account?</p>
-					<button
-						onClick={() => {
-							setShowRegister(true);
-						}}
-					>
-						Register
-					</button>
-					<button onClick={createUser}>test</button>
+					<div className={styles.container}>
+						<p>Log in</p>
+						<LoginForm logIn={logIn} />
+						<p>Don't have an account?</p>
+						<button
+							onClick={() => {
+								setShowRegister(true);
+							}}
+							className={styles.button}
+						>
+							Register
+						</button>
+					</div>
 				</>
 			)}
 		</>

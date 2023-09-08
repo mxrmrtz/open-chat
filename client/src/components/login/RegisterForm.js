@@ -1,3 +1,5 @@
+import styles from "./loginPage.module.css";
+
 const RegisterForm = ({ setShowRegister, createUser }) => {
 	const handleAccount = (e) => {
 		const inputUserInfo = {
@@ -16,20 +18,36 @@ const RegisterForm = ({ setShowRegister, createUser }) => {
 
 	return (
 		<>
-			<p>Register an account</p>
-			<form onSubmit={handleAccount}>
-				<input type="text" id="username" placeholder="username" />
-				<input type="password" id="password" placeholder="password" />
-				<button type="submit">Register</button>
-			</form>
-			<button
-				type="button"
-				onClick={() => {
-					setShowRegister(false);
-				}}
-			>
-				Already have an account?
-			</button>
+			<div className={styles.container}>
+				<p>Register an account</p>
+				<form className={styles.loginForm} onSubmit={handleAccount}>
+					<input
+						className={styles.inputField}
+						type="text"
+						id="username"
+						placeholder="username"
+					/>
+					<input
+						className={styles.inputField}
+						type="password"
+						id="password"
+						placeholder="password"
+					/>
+					<button className={styles.button} type="submit">
+						Register
+					</button>
+				</form>
+				<p>Already have an account?</p>
+				<button
+					className={styles.button}
+					type="button"
+					onClick={() => {
+						setShowRegister(false);
+					}}
+				>
+					Log in
+				</button>
+			</div>
 		</>
 	);
 };
