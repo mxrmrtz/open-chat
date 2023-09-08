@@ -19,7 +19,7 @@ const RegisterForm = ({ setShowRegister, createUser }) => {
 			<p>Register an account</p>
 			<form onSubmit={handleAccount}>
 				<input type="text" id="username" placeholder="username" />
-				<input type="text" id="password" placeholder="password" />
+				<input type="password" id="password" placeholder="password" />
 				<button type="submit">Register</button>
 			</form>
 			<button
