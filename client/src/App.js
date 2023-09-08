@@ -6,6 +6,7 @@ import LoginPage from "./components/login/LoginPage";
 function App() {
 	const [messagesData, setMessagesData] = useState([]);
 	const [accessToken, setAccessToken] = useState("");
+	const [loggedIn, setLoggedIn] = useState(false);
 
 	// GET ACCESS TOKEN
 	const getAccessToken = useCallback(async () => {
@@ -15,6 +16,7 @@ function App() {
 			});
 			const accessToken = await res.json();
 			setAccessToken(accessToken.accessToken);
+			setLoggedIn(true);
 		} catch (err) {
 			console.error("couldn't retreieve access token", err);
 		}
@@ -27,6 +29,7 @@ function App() {
 				method: "GET",
 			});
 			setMessagesData([]);
+			setLoggedIn(false);
 		} catch (err) {
 			console.error(err);
 		}
@@ -107,14 +110,19 @@ function App() {
 	return (
 		<div className="App-header">
 			<h1>Wacky Chaty</h1>
-			<LoginPage getData={getData} />
-			<button onClick={logOut}>log out</button>
-			<ChatBox
-				handleDelete={handleDelete}
-				messagesData={messagesData}
-				handleNewMessage={handleNewMessage}
-				handleEdit={handleEdit}
-			/>
+			{!loggedIn ? (
+				<LoginPage getData={getData} setLoggedIn={setLoggedIn} />
+			) : (
+				<>
+					<button onClick={logOut}>log out</button>
+					<ChatBox
+						handleDelete={handleDelete}
+						messagesData={messagesData}
+						handleNewMessage={handleNewMessage}
+						handleEdit={handleEdit}
+					/>
+				</>
+			)}
 		</div>
 	);
 }

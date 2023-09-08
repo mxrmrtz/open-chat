@@ -2,7 +2,7 @@ import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
 import { useState } from "react";
 
-const LoginPage = ({ getData }) => {
+const LoginPage = ({ getData, setLoggedIn }) => {
 	const [showRegister, setShowRegister] = useState(false);
 
 	// CREATE
@@ -27,6 +27,7 @@ const LoginPage = ({ getData }) => {
 			body: JSON.stringify(user),
 		});
 		getData();
+		setLoggedIn(true);
 
 		console.log("i am loggign in");
 	};
