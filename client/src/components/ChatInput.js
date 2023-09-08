@@ -3,12 +3,16 @@ import { useState } from "react";
 import styles from "./ChatInput.module.css";
 import button from "../icons/submit_button.svg";
 
-const ChatInput = ({ handleNewMessage }) => {
-	const [newMessage, setNewMessage] = useState({ message: "" });
+const ChatInput = ({ handleNewMessage, currentUser }) => {
+	const [newMessage, setNewMessage] = useState({});
 
 	const handleChange = (e) => {
 		e.preventDefault();
-		setNewMessage((prev) => ({ ...prev, message: e.target.value }));
+		setNewMessage((prev) => ({
+			...prev,
+			username: currentUser,
+			message: e.target.value,
+		}));
 	};
 
 	const handleSubmit = (e) => {

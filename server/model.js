@@ -27,6 +27,9 @@ const MessageTable = sequelize.define("messages", {
 		type: DataTypes.INTEGER,
 		autoIncrement: true,
 	},
+	username: {
+		type: DataTypes.TEXT,
+	},
 	message: {
 		type: DataTypes.TEXT,
 	},

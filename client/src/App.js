@@ -7,6 +7,7 @@ function App() {
 	const [messagesData, setMessagesData] = useState([]);
 	const [accessToken, setAccessToken] = useState("");
 	const [loggedIn, setLoggedIn] = useState(false);
+	const [currentUser, setCurrentUser] = useState("");
 
 	// GET ACCESS TOKEN
 	const getAccessToken = useCallback(async () => {
@@ -16,7 +17,6 @@ function App() {
 			});
 			const accessToken = await res.json();
 			setAccessToken(accessToken.accessToken);
-			setLoggedIn(true);
 		} catch (err) {
 			console.error("couldn't retreieve access token", err);
 		}
@@ -29,7 +29,9 @@ function App() {
 				method: "GET",
 			});
 			setMessagesData([]);
+			setAccessToken("");
 			setLoggedIn(false);
+			setCurrentUser("");
 		} catch (err) {
 			console.error(err);
 		}
@@ -63,6 +65,7 @@ function App() {
 				},
 			});
 			const data = await res.json();
+			setLoggedIn(true);
 			setMessagesData(data);
 		} catch (error) {
 			console.error("there is an issue", error);
@@ -111,15 +114,17 @@ function App() {
 		<div className="App-header">
 			<h1>Wacky Chaty</h1>
 			{!loggedIn ? (
-				<LoginPage getData={getData} setLoggedIn={setLoggedIn} />
+				<LoginPage getData={getData} setCurrentUser={setCurrentUser} />
 			) : (
 				<>
 					<button onClick={logOut}>log out</button>
+					<p>hello {currentUser}</p>
 					<ChatBox
 						handleDelete={handleDelete}
 						messagesData={messagesData}
 						handleNewMessage={handleNewMessage}
 						handleEdit={handleEdit}
+						currentUser={currentUser}
 					/>
 				</>
 			)}
