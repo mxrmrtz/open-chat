@@ -1,17 +1,12 @@
-import { useState } from "react";
-
-const RegisterForm = ({ setShowRegister, createUser, user }) => {
-	const [newUser, setNewUser] = useState(null);
-
+const RegisterForm = ({ setShowRegister, createUser }) => {
 	const handleAccount = (e) => {
-		const inputUser = {
+		const inputUserInfo = {
 			username: e.target[0].value,
 			password: e.target[1].value,
 		};
-		console.log(inputUser);
-		createUser(inputUser);
-
+		createUser(inputUserInfo);
 		e.preventDefault();
+		e.target[0].value = e.target[1].value = "";
 	};
 
 	// const handleChange = (e) => {

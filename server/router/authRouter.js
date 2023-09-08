@@ -21,7 +21,7 @@ router.post("/auth", async (req, res) => {
 		const accessToken = jwt.sign(
 			{ username: foundUser.username },
 			process.env.ACCESS_TOKEN_SECRET,
-			{ expiresIn: "60s" } // make it like 5 min in production
+			{ expiresIn: "30s" } // make it like 5 min in production
 		);
 		const refreshToken = jwt.sign(
 			{ username: foundUser.username },

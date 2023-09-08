@@ -9,8 +9,7 @@ const logoutRouter = require("./router/logoutRouter");
 const cookieParser = require("cookie-parser");
 const Aiven = require("./aivenDatabase");
 const credentials = require("./middleware/credentials");
-// const verifyJWT = require("./middleware/verifyJWT");
-const corsOptions = require("./config/corsOptions");
+const verifyJWT = require("./middleware/verifyJWT");
 
 Aiven();
 const app = express();
@@ -22,17 +21,18 @@ app.use(bodyParser.json());
 app.use(credentials);
 
 //Cors
-app.use(cors(corsOptions));
+app.use(cors());
 
 //cookie middleware
 app.use(cookieParser());
 
-app.use("/", router);
 app.use("/", usersRouter);
-// app.use(verifyJWT);
 app.use("/", authRouter);
 app.use("/", refreshRouter);
 app.use("/", logoutRouter);
+
+app.use(verifyJWT);
+app.use("/", router);
 
 app.listen(port, () => {
 	console.log(`listening to port ${port}`);

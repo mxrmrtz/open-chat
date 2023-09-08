@@ -6,6 +6,7 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
 router.get("/refresh", async (req, res) => {
+	console.log("request cookies", req.cookies);
 	const cookies = req.cookies;
 	if (!cookies?.jwt) return res.sendStatus(401);
 	const refreshToken = cookies.jwt;
@@ -21,7 +22,7 @@ router.get("/refresh", async (req, res) => {
 		const accessToken = jwt.sign(
 			{ username: decoded.username },
 			process.env.ACCESS_TOKEN_SECRET,
-			{ expiresIn: "30s" }
+			{ expiresIn: "5m" }
 		);
 		res.json({ accessToken });
 	});

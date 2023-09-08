@@ -15,7 +15,7 @@ router.post("/messages", async (req, res) => {
 
 // add verifyJWT here later
 // READ
-router.get("/messages", verifyJWT, async (req, res) => {
+router.get("/messages", async (req, res) => {
 	const list = await MessageTable.findAll();
 	res.json(list);
 });

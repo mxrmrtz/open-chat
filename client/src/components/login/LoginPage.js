@@ -2,11 +2,8 @@ import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
 import { useState } from "react";
 
-const LoginPage = () => {
+const LoginPage = ({ getData }) => {
 	const [showRegister, setShowRegister] = useState(false);
-	const [user, setUser] = useState({});
-
-	console.log(user);
 
 	// CREATE
 	const createUser = async (user) => {
@@ -19,18 +16,32 @@ const LoginPage = () => {
 		});
 	};
 
+	// LOG IN
+	const logIn = async (user) => {
+		await fetch("/auth", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			credentials: "include",
+			body: JSON.stringify(user),
+		});
+		getData();
+
+		console.log("i am loggign in");
+	};
+
 	return (
 		<>
 			{showRegister ? (
 				<RegisterForm
-					user={user}
 					createUser={createUser}
 					setShowRegister={setShowRegister}
 				/>
 			) : (
 				<>
 					<p>Log in</p>
-					<LoginForm />
+					<LoginForm logIn={logIn} />
 					<p>Don't have an account?</p>
 					<button
 						onClick={() => {
