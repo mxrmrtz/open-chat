@@ -8,7 +8,7 @@ const Profiles = ({ className, messagesData }) => {
 				<ul className={styles.profiles_container}>
 					{messagesData.map((item) => {
 						return (
-							<li key={item.id}>
+							<li className={styles.profile} key={item.id}>
 								<div className={styles.message}>
 									<img src={avatar} alt="avatar icon" />
 								</div>

@@ -1,5 +1,3 @@
-
-
 .container {
 	display: flex;
 	height: 40rem;
@@ -10,15 +8,22 @@
 	justify-content: center;
 }
 
-.profiles_container{
+.profiles_container {
 	flex-direction: column;
 	padding: 2rem 0rem;
+	flex-grow: 3;
 	align-items: center;
 	justify-content: space-between;
+}
+
+.profiles_container .profile {
+	align-self: center;
+	align-items: center;
 }
 
 .username {
 	font-size: 0.68rem;
 	color: #fff;
 	font-weight: 300;
+	text-align: center;
 }
