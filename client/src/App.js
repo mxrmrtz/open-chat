@@ -125,6 +125,7 @@ function App() {
 						handleNewMessage={handleNewMessage}
 						handleEdit={handleEdit}
 						currentUser={currentUser}
+						logOut={logOut}
 					/>
 				</>
 			)}

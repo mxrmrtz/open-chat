@@ -14,7 +14,8 @@ router.post("/auth", async (req, res) => {
 			message: `${username} ${password}username and password are required`,
 		});
 	const foundUser = await UserTable.findOne({ where: { username: username } });
-	if (!foundUser) return res.status("authrouter 401"); // unauthorized
+	if (!foundUser)
+		return res.status(401).json({ message: "wrong password or username" }); // unauthorized
 	const match = await bcrypt.compare(password, foundUser.password);
 	if (match) {
 		// create JWTs

@@ -1,9 +1,14 @@
 import styles from "./loginPage.module.css";
 
-const LoginForm = ({ logIn }) => {
-	const handleLogIn = (e) => {
+const LoginForm = ({ logIn, setLoading }) => {
+	const handleLogIn = async (e) => {
 		const user = { username: e.target[0].value, password: e.target[1].value };
-		logIn(user);
+		try {
+			setLoading(true);
+			await logIn(user);
+		} finally {
+			setLoading(false);
+		}
 		e.preventDefault();
 		e.target[0].value = e.target[1].value = "";
 	};
