@@ -2,18 +2,28 @@ import styles from "./messages.module.css";
 import MoreButton from "./MoreButton";
 
 const Messages = ({ messagesData, handleDelete, handleEdit, currentUser }) => {
+	const sortedMessages = messagesData.sort((a, b) => a.id - b.id);
 	return (
 		<>
 			<ul>
-				{messagesData.map((item) => {
+				{sortedMessages.map((item) => {
 					let allowedToEdit;
+					let ownMessage;
 					if (currentUser === item.username) {
 						allowedToEdit = true;
+						ownMessage = true;
 					} else {
 						allowedToEdit = false;
+						ownMessage = false;
 					}
+
 					return (
-						<li key={item.id}>
+						<li
+							className={
+								ownMessage ? styles.message_left : styles.message_right
+							}
+							key={item.id}
+						>
 							<div className={styles.username}>
 								<h3>{item.username}</h3>
 							</div>

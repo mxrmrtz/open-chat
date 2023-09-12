@@ -7,7 +7,7 @@ function App() {
 	const [messagesData, setMessagesData] = useState([]);
 	const [accessToken, setAccessToken] = useState("");
 	const [loggedIn, setLoggedIn] = useState(false);
-	const [currentUser, setCurrentUser] = useState("");
+	const [currentUser, setCurrentUser] = useState([]);
 
 	// GET ACCESS TOKEN
 	const getAccessToken = useCallback(async () => {
@@ -32,6 +32,7 @@ function App() {
 			setAccessToken("");
 			setLoggedIn(false);
 			setCurrentUser("");
+			localStorage.removeItem("currentUser");
 		} catch (err) {
 			console.error(err);
 		}
@@ -108,7 +109,8 @@ function App() {
 	useEffect(() => {
 		getAccessToken();
 		getData();
-	}, [getData, getAccessToken]);
+		setCurrentUser(JSON.parse(localStorage.getItem("currentUser")));
+	}, [getData, getAccessToken, currentUser]);
 
 	return (
 		<div className="App-header">

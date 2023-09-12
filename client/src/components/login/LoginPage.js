@@ -34,7 +34,7 @@ const LoginPage = ({ getData, setCurrentUser }) => {
 			if (res.status === 200) {
 				setLoggedIn(true);
 				getData();
-				setCurrentUser(user.username);
+				localStorage.setItem("currentUser", JSON.stringify(user.username));
 			} else {
 				setMessage("Incorrect username or password. Try again.");
 				console.log("could not log in");
