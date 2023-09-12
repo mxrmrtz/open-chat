@@ -61,7 +61,11 @@ const LoginPage = ({ getData, setCurrentUser }) => {
 								<div className={styles.container}>
 									<p>Log in</p>
 									<LoginForm logIn={logIn} setLoading={setLoading} />
-									<div className={styles.errorMessage}>{message}</div>
+									{message ? (
+										<div className={styles.errorMessage}>{message}</div>
+									) : (
+										<></>
+									)}
 									<p>Don't have an account?</p>
 									<button
 										onClick={() => {
