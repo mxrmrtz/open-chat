@@ -17,8 +17,9 @@ const ChatBox = ({
 	return (
 		<>
 			{!loading ? (
-				<>
+				<div className={styles.fullContainer}>
 					<button
+						className={styles.button}
 						onClick={async () => {
 							try {
 								setLoading(true);
@@ -28,14 +29,14 @@ const ChatBox = ({
 							}
 						}}
 					>
-						log out msg
+						Log out
 					</button>
-					<div className={styles.container}>
+					<div className={styles.messagesContainer}>
 						<Profiles
 							messagesData={messagesData}
 							className={styles.profiles_container}
 						/>
-						<div className={styles.chatbox_container}>
+						<div className={styles.chatboxContainer}>
 							<Messages
 								handleDelete={handleDelete}
 								messagesData={messagesData}
@@ -48,7 +49,7 @@ const ChatBox = ({
 							/>
 						</div>
 					</div>
-				</>
+				</div>
 			) : (
 				<>logging you out</>
 			)}

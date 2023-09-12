@@ -117,8 +117,7 @@ function App() {
 				<LoginPage getData={getData} setCurrentUser={setCurrentUser} />
 			) : (
 				<>
-					<button onClick={logOut}>log out</button>
-					<p>hello {currentUser}</p>
+					<p>Hello {currentUser}!</p>
 					<ChatBox
 						handleDelete={handleDelete}
 						messagesData={messagesData}
