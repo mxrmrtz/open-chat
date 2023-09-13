@@ -4,22 +4,16 @@ import editIcon from "../../icons/edit.svg";
 import deleteIcon from "../../icons/delete.svg";
 import styles from "./MoreButton.module.css";
 
-const MoreButton = ({ id, handleDelete, handleEdit }) => {
+const MoreButton = ({
+	id,
+	message,
+	setEditedMessage,
+	handleDelete,
+	setShowEdit,
+	setCurrentId,
+}) => {
 	const [isShowing, setIsShowing] = useState(false);
 	const [loading, setLoading] = useState(false);
-	const [showEdit, setShowEdit] = useState(false);
-	const [editedMessage, setEditedMessage] = useState({ message: "" });
-
-	const handleEditSubmit = () => {
-		handleEdit(id, editedMessage);
-		setShowEdit(false);
-	};
-
-	const handleEditChange = (e) => {
-		e.preventDefault();
-		setEditedMessage((prev) => ({ ...prev, message: e.target.value }));
-		console.log(editedMessage);
-	};
 
 	return (
 		<>
@@ -40,6 +34,11 @@ const MoreButton = ({ id, handleDelete, handleEdit }) => {
 							onClick={async () => {
 								setShowEdit(true);
 								setIsShowing(false);
+								setEditedMessage((prev) => ({
+									...prev,
+									message: message,
+								}));
+								setCurrentId(id);
 							}}
 						/>
 						<img
@@ -58,19 +57,6 @@ const MoreButton = ({ id, handleDelete, handleEdit }) => {
 					<img src={more_miniIcon} alt="click for more" />
 				</div>
 			</div>
-			{showEdit && (
-				<form method="put" onSubmit={handleEditSubmit}>
-					<input
-						type="text"
-						placeholder="input new message"
-						onChange={handleEditChange}
-					/>
-					<button type="submit">submit</button>
-					<button type="button" onClick={() => setShowEdit(false)}>
-						exit
-					</button>
-				</form>
-			)}
 		</>
 	);
 };

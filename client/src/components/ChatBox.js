@@ -32,10 +32,6 @@ const ChatBox = ({
 						Log out
 					</button>
 					<div className={styles.messagesContainer}>
-						<Profiles
-							messagesData={messagesData}
-							className={styles.profiles_container}
-						/>
 						<div className={styles.chatboxContainer}>
 							<Messages
 								handleDelete={handleDelete}
@@ -43,11 +39,11 @@ const ChatBox = ({
 								handleEdit={handleEdit}
 								currentUser={currentUser}
 							/>
-							<ChatInput
-								handleNewMessage={handleNewMessage}
-								currentUser={currentUser}
-							/>
 						</div>
+						<ChatInput
+							handleNewMessage={handleNewMessage}
+							currentUser={currentUser}
+						/>
 					</div>
 				</div>
 			) : (

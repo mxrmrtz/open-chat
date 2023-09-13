@@ -2,11 +2,12 @@ import styles from "./profiles.module.css";
 import avatar from "../icons/account_circle.png";
 
 const Profiles = ({ className, messagesData }) => {
+	const sortedMessages = messagesData.sort((a, b) => a.id - b.id);
 	return (
 		<>
 			<div className={`${styles.container} ${className}`}>
 				<ul className={styles.profiles_container}>
-					{messagesData.map((item) => {
+					{sortedMessages.map((item) => {
 						return (
 							<li className={styles.profile} key={item.id}>
 								<div className={styles.message}>
