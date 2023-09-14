@@ -123,6 +123,7 @@ function App() {
 					<ChatBox
 						handleDelete={handleDelete}
 						messagesData={messagesData}
+						getData={getData}
 						handleNewMessage={handleNewMessage}
 						handleEdit={handleEdit}
 						currentUser={currentUser}

@@ -3,7 +3,12 @@ import { useState } from "react";
 import styles from "./ChatInput.module.css";
 import button from "../icons/submit_button.svg";
 
-const ChatInput = ({ handleNewMessage, currentUser }) => {
+const ChatInput = ({
+	handleNewMessage,
+	currentUser,
+	scrollToLastMessage,
+	getData,
+}) => {
 	const [newMessage, setNewMessage] = useState({});
 
 	const handleChange = (e) => {
@@ -15,9 +20,14 @@ const ChatInput = ({ handleNewMessage, currentUser }) => {
 		}));
 	};
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
-		handleNewMessage(newMessage);
+		try {
+			await handleNewMessage(newMessage);
+			await getData();
+		} finally {
+			scrollToLastMessage();
+		}
 		e.target.reset();
 	};
 

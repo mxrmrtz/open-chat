@@ -2,7 +2,13 @@ import styles from "./messages.module.css";
 import { useState } from "react";
 import MoreButton from "./MoreButton";
 
-const Messages = ({ messagesData, handleDelete, handleEdit, currentUser }) => {
+const Messages = ({
+	messagesData,
+	handleDelete,
+	handleEdit,
+	currentUser,
+	lastMessageRef,
+}) => {
 	const [showEdit, setShowEdit] = useState(false);
 	const [editedMessage, setEditedMessage] = useState({ message: "" });
 	const [currentId, setCurrentId] = useState();
@@ -22,7 +28,7 @@ const Messages = ({ messagesData, handleDelete, handleEdit, currentUser }) => {
 
 	return (
 		<>
-			<ul>
+			<ul ref={lastMessageRef}>
 				{sortedMessages.map((item) => {
 					let allowedToEdit;
 					let ownMessage;
@@ -50,7 +56,9 @@ const Messages = ({ messagesData, handleDelete, handleEdit, currentUser }) => {
 									<div className={styles.message}>
 										<form
 											method="put"
-											onSubmit={() => handleEditSubmit(item.id)}
+											onSubmit={() => {
+												handleEditSubmit(item.id);
+											}}
 											className={styles.editMessage_form}
 										>
 											<input

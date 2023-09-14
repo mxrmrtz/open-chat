@@ -1,5 +1,6 @@
 .container {
 	display: flex;
+	height: fit-content;
 	width: 7rem;
 	background: linear-gradient(177.03deg, #f4acb7 0.4%, #ffcad4 99.35%);
 	border-radius: 11px;

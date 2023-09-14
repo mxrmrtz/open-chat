@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import styles from "./chatbox.module.css";
 import ChatInput from "./ChatInput";
 import Messages from "./messages/Messages";
@@ -11,8 +11,15 @@ const ChatBox = ({
 	handleEdit,
 	currentUser,
 	logOut,
+	getData,
 }) => {
 	const [loading, setLoading] = useState(false);
+	const lastMessageRef = useRef();
+
+	const scrollToLastMessage = () => {
+		const lastMessage = lastMessageRef.current?.lastElementChild;
+		lastMessage?.scrollIntoView({ behavior: "smooth" });
+	};
 
 	return (
 		<>
@@ -33,16 +40,24 @@ const ChatBox = ({
 					</button>
 					<div className={styles.messagesContainer}>
 						<div className={styles.chatboxContainer}>
+							<Profiles
+								messagesData={messagesData}
+								className={styles.profiles_container}
+							/>
 							<Messages
 								handleDelete={handleDelete}
 								messagesData={messagesData}
 								handleEdit={handleEdit}
 								currentUser={currentUser}
+								lastMessageRef={lastMessageRef}
 							/>
 						</div>
 						<ChatInput
 							handleNewMessage={handleNewMessage}
 							currentUser={currentUser}
+							lastMessageRef={lastMessageRef}
+							scrollToLastMessage={scrollToLastMessage}
+							getData={getData}
 						/>
 					</div>
 				</div>
