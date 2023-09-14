@@ -1,12 +1,13 @@
 .fullContainer {
 	height: 100%;
-	width: 45%;
+	width: 50vw;
 	display: flex;
 	flex-direction: column;
 }
 
 .fullChatBoxContainer {
 	display: flex;
+	justify-content: center;
 }
 
 .messagesContainer {
@@ -20,7 +21,7 @@
 }
 
 .chatboxContainer {
-	width: 100%;
+	max-width: 100%;
 	max-height: 50vh;
 	display: flex;
 	overflow-y: scroll;

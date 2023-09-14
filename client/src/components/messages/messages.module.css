@@ -2,7 +2,7 @@ ul {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-end;
-	padding-inline-start: 0;
+	width: 100%;
 }
 
 li {
@@ -30,13 +30,13 @@ li {
 	margin: 0.4rem 1rem;
 	border-radius: 10px;
 	opacity: 1;
-	max-width: 70%;
-	overflow-wrap: break-word;
+	max-width: 40vw;
 }
 
 .message_text {
 	font-size: 0.9rem;
 	color: #424242;
+	overflow-wrap: break-word;
 }
 
 .username {

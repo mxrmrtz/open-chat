@@ -2,7 +2,7 @@
 	display: flex;
 	max-height: 61vh;
 	overflow-y: hidden;
-	width: 7rem;
+	min-width: 7rem;
 	background: linear-gradient(177.03deg, #f4acb7 0.4%, #ffcad4 99.35%);
 	border-radius: 11px;
 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
