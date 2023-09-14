@@ -38,27 +38,29 @@ const ChatBox = ({
 					>
 						Log out
 					</button>
-					<div className={styles.messagesContainer}>
-						<div className={styles.chatboxContainer}>
-							<Profiles
-								messagesData={messagesData}
-								className={styles.profiles_container}
-							/>
-							<Messages
-								handleDelete={handleDelete}
-								messagesData={messagesData}
-								handleEdit={handleEdit}
+					<div className={styles.fullChatBoxContainer}>
+						<Profiles
+							messagesData={messagesData}
+							className={styles.profiles_container}
+						/>
+						<div className={styles.messagesContainer}>
+							<div className={styles.chatboxContainer}>
+								<Messages
+									handleDelete={handleDelete}
+									messagesData={messagesData}
+									handleEdit={handleEdit}
+									currentUser={currentUser}
+									lastMessageRef={lastMessageRef}
+								/>
+							</div>
+							<ChatInput
+								handleNewMessage={handleNewMessage}
 								currentUser={currentUser}
 								lastMessageRef={lastMessageRef}
+								scrollToLastMessage={scrollToLastMessage}
+								getData={getData}
 							/>
 						</div>
-						<ChatInput
-							handleNewMessage={handleNewMessage}
-							currentUser={currentUser}
-							lastMessageRef={lastMessageRef}
-							scrollToLastMessage={scrollToLastMessage}
-							getData={getData}
-						/>
 					</div>
 				</div>
 			) : (

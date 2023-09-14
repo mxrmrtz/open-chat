@@ -8,6 +8,7 @@ function App() {
 	const [accessToken, setAccessToken] = useState("");
 	const [loggedIn, setLoggedIn] = useState(false);
 	const [currentUser, setCurrentUser] = useState([]);
+	const [isLoading, setIsLoading] = useState(false);
 
 	// GET ACCESS TOKEN
 	const getAccessToken = useCallback(async () => {
@@ -116,7 +117,11 @@ function App() {
 		<div className="App-header">
 			<h1>Wacky Chaty</h1>
 			{!loggedIn ? (
-				<LoginPage getData={getData} setCurrentUser={setCurrentUser} />
+				!currentUser ? (
+					<LoginPage getData={getData} setCurrentUser={setCurrentUser} />
+				) : (
+					<>Refreshing the page</>
+				)
 			) : (
 				<>
 					<p>Hello {currentUser}!</p>
