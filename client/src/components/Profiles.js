@@ -2,12 +2,23 @@ import styles from "./profiles.module.css";
 import avatar from "../icons/account_circle.png";
 
 const Profiles = ({ className, messagesData }) => {
-	const sortedMessages = messagesData.sort((a, b) => a.id - b.id);
+	// const sortedMessages = messagesData.sort((a, b) => a.id - b.id);
+
+	let uniqueProfiles = [];
+	const profiles = messagesData.filter((user) => {
+		if (uniqueProfiles.includes(user.username)) {
+			return;
+		} else {
+			uniqueProfiles.push(user.username);
+		}
+		return uniqueProfiles;
+	});
+
 	return (
 		<>
 			<div className={`${styles.container} ${className}`}>
 				<ul className={styles.profiles_container}>
-					{sortedMessages.map((item) => {
+					{profiles.map((item) => {
 						return (
 							<li className={styles.profile} key={item.id}>
 								<div className={styles.message}>
