@@ -8,7 +8,6 @@ function App() {
 	const [accessToken, setAccessToken] = useState("");
 	const [loggedIn, setLoggedIn] = useState(false);
 	const [currentUser, setCurrentUser] = useState([]);
-	const [isLoading, setIsLoading] = useState(false);
 
 	// GET ACCESS TOKEN
 	const getAccessToken = useCallback(async () => {
