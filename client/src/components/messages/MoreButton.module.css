@@ -4,10 +4,14 @@
 	align-items: center;
 }
 
-.more_icon{
-	padding-bottom: .8rem;
+.more_icon {
+	padding-bottom: 0.8rem;
 }
 
 .more_actions {
-	margin: .3rem;
-  }
+	margin: 0.3rem;
+}
+
+.invisible {
+	display: hidden;
+}

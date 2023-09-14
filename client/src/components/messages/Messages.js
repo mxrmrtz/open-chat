@@ -61,13 +61,15 @@ const Messages = ({
 											}}
 											className={styles.editMessage_form}
 										>
-											<input
+											<textarea
 												value={editedMessage.message}
 												type="text"
 												placeholder="input new message"
 												className={styles.editMessage_input}
 												onChange={handleEditChange}
-											/>
+												rows={4}
+												cols={70}
+											></textarea>
 											<div className={styles.editMessage_buttonContainer}>
 												<button type="submit">submit</button>
 												<button
@@ -93,6 +95,7 @@ const Messages = ({
 										handleDelete={handleDelete}
 										setShowEdit={setShowEdit}
 										setCurrentId={setCurrentId}
+										showEdit={showEdit}
 									/>
 								) : (
 									<></>
