@@ -12,15 +12,15 @@ li {
 	font-size: 1.2rem;
 }
 
-.message_left {
-	align-self: flex-end;
-}
-
-.message_left .username {
-	align-self: flex-end;
-}
-
 .message_right {
+	align-self: flex-end;
+}
+
+.message_right .username {
+	align-self: flex-end;
+}
+
+.message_left {
 	align-self: flex-start;
 }
 
@@ -51,11 +51,11 @@ li {
 	margin: 0rem 4rem 0rem 0rem;
 }
 
-.message_left .message_container {
+.message_right .message_container {
 	margin: 0rem 0rem 0rem 4rem;
 }
 
-.message_left .message_container {
+.message_right .message_container {
 	flex-direction: row-reverse;
 }
 
@@ -100,6 +100,6 @@ li {
 	margin: 0rem 1rem 1rem 1rem;
 }
 
-.message_right .editedText {
+.message_left .editedText {
 	align-self: flex-start;
 }

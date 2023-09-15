@@ -2,7 +2,6 @@ const express = require("express");
 const { UserTable } = require("../model.js");
 const bcrypt = require("bcrypt");
 const router = express.Router();
-const { Sequelize } = require("sequelize");
 
 const jwt = require("jsonwebtoken");
 require("dotenv").config();

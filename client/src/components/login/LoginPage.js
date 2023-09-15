@@ -3,7 +3,7 @@ import RegisterForm from "./RegisterForm";
 import { useState } from "react";
 import styles from "./loginPage.module.css";
 
-const LoginPage = ({ getData, setCurrentUser }) => {
+const LoginPage = ({ getData, setCurrentUser, scrollToLastMessage }) => {
 	const [showRegister, setShowRegister] = useState(false);
 	const [loading, setLoading] = useState(false);
 	const [loggedIn, setLoggedIn] = useState(false);
@@ -35,6 +35,7 @@ const LoginPage = ({ getData, setCurrentUser }) => {
 				setLoggedIn(true);
 				getData();
 				localStorage.setItem("currentUser", JSON.stringify(user.username));
+				scrollToLastMessage();
 			} else {
 				setMessage("Incorrect username or password. Try again.");
 				console.log("could not log in");

@@ -44,7 +44,7 @@ const Messages = ({
 					return (
 						<li
 							className={
-								ownMessage ? styles.message_left : styles.message_right
+								ownMessage ? styles.message_right : styles.message_left
 							}
 							key={item.id}
 						>

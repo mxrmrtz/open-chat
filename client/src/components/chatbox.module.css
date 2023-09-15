@@ -25,6 +25,7 @@
 	max-height: 50vh;
 	display: flex;
 	overflow-y: scroll;
+	overflow-x: hidden;
 }
 
 .button {
@@ -39,4 +40,14 @@
 	border: none;
 	width: fit-content;
 	cursor: pointer;
+}
+
+@media screen and (max-width: 670px) {
+	.messagesContainer {
+		width: 80vw;
+	}
+
+	.button {
+		align-self: center;
+	}
 }
