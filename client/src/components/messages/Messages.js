@@ -82,7 +82,7 @@ const Messages = ({
 										</form>
 									</div>
 								) : (
-									<div className={styles.message}>
+									<div tabIndex="0" className={styles.message}>
 										<p className={styles.message_text}>{item.message}</p>
 									</div>
 								)}
