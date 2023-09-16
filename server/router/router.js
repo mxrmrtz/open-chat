@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { MessageTable } = require("../model.js");
+const verifyJWT = require("../middleware/verifyJWT.js");
 
 // CREATE
 router.post("/messages", async (req, res) => {
@@ -12,6 +13,7 @@ router.post("/messages", async (req, res) => {
 	res.send(newMessage);
 });
 
+// add verifyJWT here later
 // READ
 router.get("/messages", async (req, res) => {
 	const list = await MessageTable.findAll();

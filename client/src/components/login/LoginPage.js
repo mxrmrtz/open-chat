@@ -1,16 +1,16 @@
 import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
 import { useState } from "react";
+import styles from "./loginPage.module.css";
 
-const LoginPage = () => {
+const LoginPage = ({ getData, setCurrentUser, scrollToLastMessage }) => {
 	const [showRegister, setShowRegister] = useState(false);
-	const [user, setUser] = useState({})
+	const [loading, setLoading] = useState(false);
+	const [loggedIn, setLoggedIn] = useState(false);
+	const [message, setMessage] = useState("");
 
-	console.log(user)
-
-
-
-	const createUser = async () => {
+	// CREATE
+	const createUser = async (user) => {
 		await fetch("/users", {
 			method: "POST",
 			headers: {
@@ -20,23 +20,69 @@ const LoginPage = () => {
 		});
 	};
 
+	// LOG IN
+	const logIn = async (user) => {
+		try {
+			const res = await fetch("/auth", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				credentials: "include",
+				body: JSON.stringify(user),
+			});
+			if (res.status === 200) {
+				setLoggedIn(true);
+				getData();
+				localStorage.setItem("currentUser", JSON.stringify(user.username));
+				scrollToLastMessage();
+			} else {
+				setMessage("Incorrect username or password. Try again.");
+				console.log("could not log in");
+			}
+		} catch (err) {
+			console.log("could not log in");
+		}
+	};
+
 	return (
 		<>
-			{showRegister ? (
-				<RegisterForm user={user} setUser={setUser} setShowRegister={setShowRegister} />
+			{!loading ? (
+				loggedIn ? (
+					<div>Welcome!</div>
+				) : (
+					<>
+						{showRegister ? (
+							<RegisterForm
+								createUser={createUser}
+								setShowRegister={setShowRegister}
+							/>
+						) : (
+							<>
+								<div className={styles.container}>
+									<p>Log in</p>
+									<LoginForm logIn={logIn} setLoading={setLoading} />
+									{message ? (
+										<div className={styles.errorMessage}>{message}</div>
+									) : (
+										<></>
+									)}
+									<p>Don't have an account?</p>
+									<button
+										onClick={() => {
+											setShowRegister(true);
+										}}
+										className={styles.button}
+									>
+										Register
+									</button>
+								</div>
+							</>
+						)}
+					</>
+				)
 			) : (
-				<>
-					<LoginForm />
-					<p>Don't have an account?</p>
-					<button
-						onClick={() => {
-							setShowRegister(true);
-						}}
-					>
-						Register
-					</button>
-					<button onClick={createUser}>test</button>
-				</>
+				<>loading</>
 			)}
 		</>
 	);
